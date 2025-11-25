@@ -16,7 +16,6 @@ export default function DigitalWalletMVP() {
   const [userAuthenticated, setUserAuthenticated] = useState(false);
   const [showBiometric, setShowBiometric] = useState(false);
   const [selectedData, setSelectedData] = useState([]);
-  const [verificationMode, setVerificationMode] = useState(false);
   const [showQR, setShowQR] = useState(false);
   const [verificationResult, setVerificationResult] = useState(null);
 
@@ -87,10 +86,7 @@ export default function DigitalWalletMVP() {
         </button>
 
         <button
-          onClick={() => {
-            setVerificationMode(true);
-            setActiveView('verify');
-          }}
+          onClick={() => setActiveView('verify')}
           className="bg-blue-600 text-white p-6 rounded-xl shadow-lg hover:bg-blue-700 transition flex flex-col items-center space-y-2"
         >
           <CheckCircle className="w-8 h-8" />
