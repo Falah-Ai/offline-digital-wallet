@@ -1,7 +1,6 @@
 {
   "name": "offline-digital-wallet",
   "version": "1.0.0",
-  "description": "Secure offline digital wallet for national ID",
   "private": true,
   "homepage": "https://falah-ai.github.io/offline-digital-wallet",
   "dependencies": {
@@ -13,20 +12,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
-  },
-  "eslintConfig": {
-    "extends": ["react-app"]
+    "test": "react-scripts test"
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
+    "production": [">0.2%", "not dead"],
     "development": ["last 1 chrome version"]
-  },
-  "devDependencies": {
-    "tailwindcss": "^3.3.0",
-    "gh-pages": "^6.0.0"
   }
-
-  }
+}
