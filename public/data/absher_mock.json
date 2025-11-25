@@ -1,0 +1,41 @@
+[
+  {
+    "id": "r1",
+    "name": "أحمد محمد العتيبي",
+    "national_id": "1088123456",
+    "dob": "1990-05-15",
+    "nationality": "سعودي",
+    "gender": "ذكر",
+    "issueDate": "2020-01-01",
+    "expiryDate": "2030-01-01",
+    "photoEmoji": "👤",
+    "verifiedBy": "Ministry of Interior",
+    "lastChecked": "2025-11-25T09:41:00Z"
+  },
+  {
+    "id": "r2",
+    "name": "سارة بنت عبدالله القحطاني",
+    "national_id": "2087654321",
+    "dob": "1986-03-09",
+    "nationality": "سعودية",
+    "gender": "أنثى",
+    "issueDate": "2019-07-01",
+    "expiryDate": "2029-07-01",
+    "photoEmoji": "👩",
+    "verifiedBy": "Ministry of Interior",
+    "lastChecked": "2025-11-24T14:10:00Z"
+  },
+  {
+    "id": "r3",
+    "name": "محمد سالم الرشيد",
+    "national_id": "3070001112",
+    "dob": "1978-12-22",
+    "nationality": "سعودي",
+    "gender": "ذكر",
+    "issueDate": "2021-05-12",
+    "expiryDate": "2031-05-12",
+    "photoEmoji": "👨",
+    "verifiedBy": "Ministry of Interior",
+    "lastChecked": "2025-10-01T08:00:00Z"
+  }
+]

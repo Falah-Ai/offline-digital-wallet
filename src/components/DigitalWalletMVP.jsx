@@ -19,7 +19,8 @@ export default function DigitalWalletMVP() {
   const [showQR, setShowQR] = useState(false);
   const [verificationResult, setVerificationResult] = useState(null);
 
-  const userData = {
+  // current displayed user record (can be replaced from mock dataset)
+  const [currentUserData, setCurrentUserData] = useState({
     name: 'أحمد محمد العتيبي',
     idNumber: '1088123456',
     dateOfBirth: '1990/05/15',
@@ -28,13 +29,17 @@ export default function DigitalWalletMVP() {
     issueDate: '2020/01/01',
     expiryDate: '2030/01/01',
     photo: '👤',
-  };
+  });
+
+  // mock dataset state (public/data/absher_mock.json)
+  const [mockRecords, setMockRecords] = useState(null);
+  const [showDatasetBrowser, setShowDatasetBrowser] = useState(false);
 
   const availableData = [
-    { id: 'name', label: 'الاسم', value: userData.name },
-    { id: 'id', label: 'رقم الهوية', value: userData.idNumber },
-    { id: 'dob', label: 'تاريخ الميلاد', value: userData.dateOfBirth },
-    { id: 'nationality', label: 'الجنسية', value: userData.nationality },
+    { id: 'name', label: 'الاسم', value: currentUserData.name },
+    { id: 'id', label: 'رقم الهوية', value: currentUserData.idNumber },
+    { id: 'dob', label: 'تاريخ الميلاد', value: currentUserData.dateOfBirth },
+    { id: 'nationality', label: 'الجنسية', value: currentUserData.nationality },
   ];
 
   const handleBiometricAuth = () => {
@@ -66,6 +71,35 @@ export default function DigitalWalletMVP() {
     }, 1500);
   };
 
+  const loadMockDataset = async () => {
+    try {
+      const res = await fetch('/data/absher_mock.json', { cache: 'no-store' });
+      if (!res.ok) throw new Error('Failed to fetch dataset');
+      const data = await res.json();
+      setMockRecords(data);
+      setShowDatasetBrowser(true);
+    } catch (err) {
+      console.error('loadMockDataset error', err);
+      alert('فشل تحميل مجموعة البيانات التجريبية. تأكد من وجود public/data/absher_mock.json');
+    }
+  };
+
+  const importRecord = (record) => {
+    setCurrentUserData({
+      name: record.name,
+      idNumber: record.national_id,
+      dateOfBirth: record.dob,
+      nationality: record.nationality,
+      gender: record.gender,
+      issueDate: record.issueDate,
+      expiryDate: record.expiryDate,
+      photo: record.photoEmoji || '👤',
+    });
+    setShowDatasetBrowser(false);
+    setActiveView('wallet');
+    setUserAuthenticated(true);
+  };
+
   const HomeView = () => (
     <div className="flex flex-col items-center justify-center h-full space-y-8 p-8">
       <div className="text-center space-y-4">
@@ -91,6 +125,15 @@ export default function DigitalWalletMVP() {
         >
           <CheckCircle className="w-8 h-8" />
           <span className="font-bold">التحقق</span>
+        </button>
+      </div>
+
+      <div className="w-full max-w-md mt-4">
+        <button
+          onClick={loadMockDataset}
+          className="w-full bg-yellow-500 text-white p-4 rounded-xl shadow-md hover:bg-yellow-600 transition font-bold"
+        >
+          استخدام بيانات تجريبية (Mock dataset)
         </button>
       </div>
 
@@ -132,22 +175,22 @@ export default function DigitalWalletMVP() {
             <p className="text-xs opacity-80 mb-1">المملكة العربية السعودية</p>
             <p className="text-lg font-bold">الهوية الوطنية الرقمية</p>
           </div>
-          <div className="text-5xl">{userData.photo}</div>
+          <div className="text-5xl">{currentUserData.photo}</div>
         </div>
 
         <div className="space-y-2 mt-6">
           <div>
             <p className="text-xs opacity-80">الاسم</p>
-            <p className="font-bold text-lg">{userData.name}</p>
+            <p className="font-bold text-lg">{currentUserData.name}</p>
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
               <p className="text-xs opacity-80">رقم الهوية</p>
-              <p className="font-bold">{userData.idNumber}</p>
+              <p className="font-bold">{currentUserData.idNumber}</p>
             </div>
             <div>
               <p className="text-xs opacity-80">تاريخ الميلاد</p>
-              <p className="font-bold">{userData.dateOfBirth}</p>
+              <p className="font-bold">{currentUserData.dateOfBirth}</p>
             </div>
           </div>
         </div>
@@ -157,7 +200,7 @@ export default function DigitalWalletMVP() {
             <Shield className="w-4 h-4" />
             <span className="text-xs">موثقة ومشفرة</span>
           </div>
-          <span className="text-xs opacity-80">صالحة حتى {userData.expiryDate}</span>
+          <span className="text-xs opacity-80">صالحة حتى {currentUserData.expiryDate}</span>
         </div>
       </div>
 
@@ -280,39 +323,39 @@ export default function DigitalWalletMVP() {
       <div className="space-y-4">
         <div className="bg-white border border-gray-200 rounded-xl p-4">
           <p className="text-sm text-gray-600 mb-1">الاسم الكامل</p>
-          <p className="font-bold text-lg">{userData.name}</p>
+          <p className="font-bold text-lg">{currentUserData.name}</p>
         </div>
 
         <div className="bg-white border border-gray-200 rounded-xl p-4">
           <p className="text-sm text-gray-600 mb-1">رقم الهوية</p>
-          <p className="font-bold text-lg">{userData.idNumber}</p>
+          <p className="font-bold text-lg">{currentUserData.idNumber}</p>
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-white border border-gray-200 rounded-xl p-4">
             <p className="text-sm text-gray-600 mb-1">تاريخ الميلاد</p>
-            <p className="font-bold">{userData.dateOfBirth}</p>
+            <p className="font-bold">{currentUserData.dateOfBirth}</p>
           </div>
           <div className="bg-white border border-gray-200 rounded-xl p-4">
             <p className="text-sm text-gray-600 mb-1">الجنسية</p>
-            <p className="font-bold">{userData.nationality}</p>
+            <p className="font-bold">{currentUserData.nationality}</p>
           </div>
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-white border border-gray-200 rounded-xl p-4">
             <p className="text-sm text-gray-600 mb-1">الجنس</p>
-            <p className="font-bold">{userData.gender}</p>
+            <p className="font-bold">{currentUserData.gender}</p>
           </div>
           <div className="bg-white border border-gray-200 rounded-xl p-4">
             <p className="text-sm text-gray-600 mb-1">تاريخ الإصدار</p>
-            <p className="font-bold">{userData.issueDate}</p>
+            <p className="font-bold">{currentUserData.issueDate}</p>
           </div>
         </div>
 
         <div className="bg-white border border-gray-200 rounded-xl p-4">
           <p className="text-sm text-gray-600 mb-1">تاريخ الانتهاء</p>
-          <p className="font-bold">{userData.expiryDate}</p>
+          <p className="font-bold">{currentUserData.expiryDate}</p>
         </div>
       </div>
 
@@ -388,15 +431,15 @@ export default function DigitalWalletMVP() {
             <div className="space-y-3">
               <div className="flex justify-between py-2 border-b">
                 <span className="text-gray-600">الاسم:</span>
-                <span className="font-bold">{userData.name}</span>
+                <span className="font-bold">{currentUserData.name}</span>
               </div>
               <div className="flex justify-between py-2 border-b">
                 <span className="text-gray-600">رقم الهوية:</span>
-                <span className="font-bold">{userData.idNumber}</span>
+                <span className="font-bold">{currentUserData.idNumber}</span>
               </div>
               <div className="flex justify-between py-2 border-b">
                 <span className="text-gray-600">الجنسية:</span>
-                <span className="font-bold">{userData.nationality}</span>
+                <span className="font-bold">{currentUserData.nationality}</span>
               </div>
             </div>
 
@@ -428,6 +471,48 @@ export default function DigitalWalletMVP() {
         </div>
 
         <div className="pb-20">
+          {showDatasetBrowser && mockRecords && (
+            <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/50 p-6">
+              <div className="bg-white rounded-3xl w-full max-w-3xl p-6 shadow-2xl overflow-auto max-h-[80vh]">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg font-bold">Dataset — سجلات تجريبية</h3>
+                  <div className="flex items-center space-x-2 space-x-reverse">
+                    <button onClick={() => setShowDatasetBrowser(false)} className="text-sm text-gray-500 hover:text-gray-800">إغلاق</button>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {mockRecords.map((r) => (
+                    <div key={r.id} className="border rounded-xl p-4 bg-gray-50 flex flex-col justify-between">
+                      <div>
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="flex items-center space-x-3 space-x-reverse">
+                            <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-2xl">{r.photoEmoji || '👤'}</div>
+                            <div className="text-sm">
+                              <div className="font-semibold">{r.name}</div>
+                              <div className="text-xs text-gray-500">{r.national_id}</div>
+                            </div>
+                          </div>
+                          <div className="text-xs text-gray-400">{new Date(r.lastChecked).toLocaleString('ar-SA')}</div>
+                        </div>
+
+                        <div className="text-sm text-gray-700 space-y-1">
+                          <div>تاريخ الميلاد: {r.dob}</div>
+                          <div>الجنسية: {r.nationality}</div>
+                          <div>صلاحية: {r.expiryDate}</div>
+                        </div>
+                      </div>
+
+                      <div className="mt-4 flex items-center justify-between">
+                        <button onClick={() => importRecord(r)} className="bg-green-600 text-white px-3 py-2 rounded-lg">استيراد</button>
+                        <div className="text-xs text-gray-500">مصادقة: {r.verifiedBy}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
           {showBiometric && (
             <div className="absolute inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center">
               <div className="bg-white rounded-3xl p-8 text-center max-w-sm mx-4">
