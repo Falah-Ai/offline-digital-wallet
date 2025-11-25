@@ -1,15 +1,4 @@
-[10:27, 11/25/2025] Falah: import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './app';
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-[10:30, 11/25/2025] Falah: @tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -20,15 +9,7 @@ root.render(
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   direction: rtl;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
 }
