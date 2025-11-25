@@ -103,17 +103,17 @@ export default function DigitalWalletMVP() {
   const HomeView = () => (
     <div className="flex flex-col items-center justify-center h-full space-y-8 p-8">
       <div className="text-center space-y-4">
-        <div className="w-24 h-24 bg-green-600 rounded-full flex items-center justify-center mx-auto">
+        <div className="w-24 h-24 bg-absher-500 rounded-full flex items-center justify-center mx-auto shadow-lg">
           <Shield className="w-12 h-12 text-white" />
         </div>
-        <h1 className="text-3xl font-bold text-gray-800">المحفظة الرقمية</h1>
-        <p className="text-gray-600">هويتك الوطنية في هاتفك</p>
+        <h1 className="text-3xl font-extrabold text-absher-700">المحفظة الرقمية</h1>
+        <p className="text-absher-600">هويتك الوطنية في هاتفك — سريع وآمن</p>
       </div>
 
       <div className="grid grid-cols-2 gap-4 w-full max-w-md">
         <button
           onClick={handleBiometricAuth}
-          className="bg-green-600 text-white p-6 rounded-xl shadow-lg hover:bg-green-700 transition flex flex-col items-center space-y-2"
+          className="bg-absher-500 text-white p-6 rounded-xl shadow-lg hover:bg-absher-600 transition flex flex-col items-center space-y-2"
         >
           <Smartphone className="w-8 h-8" />
           <span className="font-bold">محفظتي</span>
@@ -121,7 +121,7 @@ export default function DigitalWalletMVP() {
 
         <button
           onClick={() => setActiveView('verify')}
-          className="bg-blue-600 text-white p-6 rounded-xl shadow-lg hover:bg-blue-700 transition flex flex-col items-center space-y-2"
+          className="bg-sky-600 text-white p-6 rounded-xl shadow-lg hover:bg-sky-700 transition flex flex-col items-center space-y-2"
         >
           <CheckCircle className="w-8 h-8" />
           <span className="font-bold">التحقق</span>
@@ -139,13 +139,13 @@ export default function DigitalWalletMVP() {
 
       <div className="grid grid-cols-3 gap-4 w-full max-w-md mt-8">
         <div className="text-center space-y-2">
-          <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-            <Lock className="w-6 h-6 text-green-600" />
+          <div className="w-12 h-12 bg-absher-100 rounded-full flex items-center justify-center mx-auto">
+            <Lock className="w-6 h-6 text-absher-600" />
           </div>
           <p className="text-xs text-gray-600">آمن ومشفر</p>
         </div>
         <div className="text-center space-y-2">
-          <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
+            <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
             <QrCode className="w-6 h-6 text-blue-600" />
           </div>
           <p className="text-xs text-gray-600">يعمل بدون إنترنت</p>
@@ -169,7 +169,7 @@ export default function DigitalWalletMVP() {
         </button>
       </div>
 
-      <div className="bg-gradient-to-br from-green-600 to-green-800 rounded-2xl p-6 text-white shadow-2xl">
+      <div className="bg-gradient-to-br from-absher-500 to-absher-700 rounded-3xl p-6 text-white shadow-2xl border border-white/5">
         <div className="flex items-start justify-between mb-4">
           <div>
             <p className="text-xs opacity-80 mb-1">المملكة العربية السعودية</p>
@@ -207,25 +207,25 @@ export default function DigitalWalletMVP() {
       <div className="grid grid-cols-2 gap-4">
         <button
           onClick={() => setActiveView('share')}
-          className="bg-blue-600 text-white p-4 rounded-xl hover:bg-blue-700 transition flex items-center justify-center space-x-2 space-x-reverse"
+          className="bg-sky-600 text-white p-4 rounded-xl hover:bg-sky-700 transition flex items-center justify-center space-x-2 space-x-reverse"
         >
           <QrCode className="w-5 h-5" />
           <span>مشاركة البيانات</span>
         </button>
         <button
           onClick={() => setActiveView('details')}
-          className="bg-gray-600 text-white p-4 rounded-xl hover:bg-gray-700 transition flex items-center justify-center space-x-2 space-x-reverse"
+          className="bg-gray-700 text-white p-4 rounded-xl hover:bg-gray-800 transition flex items-center justify-center space-x-2 space-x-reverse"
         >
           <FileText className="w-5 h-5" />
           <span>التفاصيل الكاملة</span>
         </button>
       </div>
 
-      <div className="bg-green-50 border border-green-200 rounded-xl p-4 flex items-start space-x-3 space-x-reverse">
-        <Shield className="w-5 h-5 text-green-600 mt-0.5" />
+      <div className="bg-absher-50 border border-absher-100 rounded-xl p-4 flex items-start space-x-3 space-x-reverse">
+        <Shield className="w-5 h-5 text-absher-600 mt-0.5" />
         <div className="flex-1">
-          <p className="font-semibold text-green-900 mb-1">محمية بالكامل</p>
-          <p className="text-sm text-green-700">بياناتك مشفرة ومحفوظة بشكل آمن في جهازك فقط</p>
+            <p className="font-semibold text-absher-700 mb-1">محمية بالكامل</p>
+          <p className="text-sm text-absher-600">بياناتك مشفرة ومحفوظة بشكل آمن في جهازك فقط</p>
         </div>
       </div>
     </div>
@@ -259,7 +259,7 @@ export default function DigitalWalletMVP() {
           <label
             key={item.id}
             className={`flex items-center justify-between p-4 rounded-xl border-2 cursor-pointer transition ${
-              selectedData.includes(item.id) ? 'border-green-600 bg-green-50' : 'border-gray-200 hover:border-gray-300'
+              selectedData.includes(item.id) ? 'border-absher-600 bg-absher-50' : 'border-gray-200 hover:border-gray-300'
             }`}
           >
             <div className="flex items-center space-x-3 space-x-reverse">
@@ -273,7 +273,7 @@ export default function DigitalWalletMVP() {
                     setSelectedData(selectedData.filter((id) => id !== item.id));
                   }
                 }}
-                className="w-5 h-5 text-green-600"
+                className="w-5 h-5 text-absher-600"
               />
               <div>
                 <p className="font-semibold text-gray-800">{item.label}</p>
@@ -285,18 +285,18 @@ export default function DigitalWalletMVP() {
       </div>
 
       {showQR && (
-        <div className="bg-white border-4 border-green-600 rounded-2xl p-8 text-center">
+        <div className="bg-white border-4 border-absher-600 rounded-2xl p-8 text-center">
           <div className="w-48 h-48 bg-gray-900 rounded-xl mx-auto mb-4 flex items-center justify-center text-white">
             <QrCode className="w-32 h-32" />
           </div>
-          <p className="font-bold text-green-600 animate-pulse">جاري المشاركة...</p>
+          <p className="font-bold text-absher-600 animate-pulse">جاري المشاركة...</p>
         </div>
       )}
 
       <button
         onClick={handleShare}
         disabled={showQR}
-        className="w-full bg-green-600 text-white p-4 rounded-xl hover:bg-green-700 transition font-bold disabled:bg-gray-400"
+        className="w-full bg-absher-500 text-white p-4 rounded-xl hover:bg-absher-600 transition font-bold disabled:bg-gray-400"
       >
         {showQR ? 'جاري المشاركة...' : 'إنشاء رمز QR للمشاركة'}
       </button>
@@ -359,13 +359,13 @@ export default function DigitalWalletMVP() {
         </div>
       </div>
 
-      <div className="bg-green-50 border border-green-200 rounded-xl p-4">
+      <div className="bg-absher-50 border border-absher-100 rounded-xl p-4">
         <div className="flex items-center space-x-2 space-x-reverse mb-2">
-          <CheckCircle className="w-5 h-5 text-green-600" />
-          <p className="font-semibold text-green-900">الحالة: صالحة</p>
+          <CheckCircle className="w-5 h-5 text-absher-600" />
+          <p className="font-semibold text-absher-900">الحالة: صالحة</p>
         </div>
-        <p className="text-sm text-green-700">تم التحقق بواسطة وزارة الداخلية</p>
-        <p className="text-xs text-green-600 mt-2">آخر تحديث: {new Date().toLocaleDateString('ar-SA')}</p>
+        <p className="text-sm text-absher-700">تم التحقق بواسطة وزارة الداخلية</p>
+        <p className="text-xs text-absher-600 mt-2">آخر تحديث: {new Date().toLocaleDateString('ar-SA')}</p>
       </div>
     </div>
   );
@@ -419,10 +419,10 @@ export default function DigitalWalletMVP() {
 
       {verificationResult === 'valid' && (
         <div className="space-y-4">
-          <div className="bg-green-50 border-2 border-green-600 rounded-2xl p-6 text-center">
-            <CheckCircle className="w-16 h-16 text-green-600 mx-auto mb-4" />
-            <p className="font-bold text-2xl text-green-900 mb-2">✓ هوية صالحة</p>
-            <p className="text-green-700">تم التحقق بنجاح من صحة الهوية</p>
+          <div className="bg-absher-50 border-2 border-absher-600 rounded-2xl p-6 text-center">
+            <CheckCircle className="w-16 h-16 text-absher-600 mx-auto mb-4" />
+            <p className="font-bold text-2xl text-absher-900 mb-2">✓ هوية صالحة</p>
+            <p className="text-absher-700">تم التحقق بنجاح من صحة الهوية</p>
           </div>
 
           <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-4">
@@ -504,7 +504,7 @@ export default function DigitalWalletMVP() {
                       </div>
 
                       <div className="mt-4 flex items-center justify-between">
-                        <button onClick={() => importRecord(r)} className="bg-green-600 text-white px-3 py-2 rounded-lg">استيراد</button>
+                        <button onClick={() => importRecord(r)} className="bg-absher-500 text-white px-3 py-2 rounded-lg hover:bg-absher-600 transition">استيراد</button>
                         <div className="text-xs text-gray-500">مصادقة: {r.verifiedBy}</div>
                       </div>
                     </div>
@@ -516,8 +516,8 @@ export default function DigitalWalletMVP() {
           {showBiometric && (
             <div className="absolute inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center">
               <div className="bg-white rounded-3xl p-8 text-center max-w-sm mx-4">
-                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Shield className="w-10 h-10 text-green-600 animate-pulse" />
+                <div className="w-20 h-20 bg-absher-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Shield className="w-10 h-10 text-absher-600 animate-pulse" />
                 </div>
                 <p className="font-bold text-xl mb-2">جاري المصادقة</p>
                 <p className="text-gray-600">يرجى استخدام بصمة الوجه أو الإصبع</p>
@@ -538,7 +538,7 @@ export default function DigitalWalletMVP() {
               <button
                 onClick={() => setActiveView('wallet')}
                 className={`flex flex-col items-center space-y-1 ${
-                  activeView === 'wallet' ? 'text-green-600' : 'text-gray-400'
+                  activeView === 'wallet' ? 'text-absher-600' : 'text-gray-400'
                 }`}
               >
                 <Smartphone className="w-6 h-6" />
