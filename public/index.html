@@ -1,211 +1,43 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#0A8A4A" />
-    <meta name="description" content="محفظة رقمية آمنة تعمل بدون إنترنت" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
 
-    <!-- Arabic font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-    <title>المحفظة الرقمية</title>
-
-    <!-- Minimal green theme + improved layout -->
-    <style>
-      :root{
-        --bg: #0A8A4A;        /* أخضر رئيسي */
-        --card: #0F3F2E;      /* أخضر غامق للبطاقات */
-        --muted-card: rgba(255,255,255,0.06);
-        --accent: #00C27A;    /* أخضر فاتح للنقاط البارزة */
-        --text: #FFFFFF;      /* نص أبيض */
-        --muted: rgba(255,255,255,0.85);
-        --glass: rgba(255,255,255,0.06);
-      }
-
-      html,body,#root {
-        height:100%;
-        margin:0;
-        font-family: 'Cairo', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-        background: linear-gradient(180deg, var(--bg), #0A6F3F);
-        color: var(--text);
-        -webkit-font-smoothing:antialiased;
-        -moz-osx-font-smoothing:grayscale;
-        direction: rtl;
-      }
-
-      a { color: inherit; text-decoration: none; }
-
-      /* Container */
-      .container { max-width:1100px; margin:0 auto; padding:14px 20px; }
-
-      /* Header */
-      .site-header {
-        position: sticky;
-        top: 0;
-        z-index: 60;
-        background: rgba(0,0,0,0.06);
-        backdrop-filter: blur(6px);
-        border-bottom: 1px solid rgba(255,255,255,0.04);
-      }
-      .site-header .container { display:flex; align-items:center; justify-content:space-between; gap:12px; }
-      .logo { display:flex; align-items:center; gap:10px; }
-      .logo img { height:36px; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25)); }
-      .logo strong { font-size:16px; color:var(--text); }
-      .nav { display:flex; gap:14px; align-items:center; }
-      .nav a { color:var(--text); font-weight:600; padding:8px 10px; border-radius:8px; opacity:0.95; }
-      .nav a:hover { background: var(--muted-card); color:var(--accent); }
-
-      .actions { display:flex; gap:10px; align-items:center; }
-      .btn { padding:10px 16px; border-radius:10px; font-weight:700; cursor:pointer; border:0; }
-      .btn.primary { background:var(--accent); color:#06321b; box-shadow:0 8px 20px rgba(0,0,0,0.12); }
-      .btn.ghost { background:transparent; border:1px solid rgba(255,255,255,0.08); color:var(--text); }
-
-      /* Hero */
-      .hero { padding:48px 20px; }
-      .hero-inner { display:flex; gap:28px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
-      .hero-text { flex:1 1 520px; }
-      .hero-text h1 { font-size:36px; margin:0 0 10px; color:var(--text); font-weight:700; line-height:1.05; }
-      .hero-text p { color:var(--muted); font-size:16px; margin-bottom:16px; max-width:680px; }
-      .hero-ctas { display:flex; gap:12px; flex-wrap:wrap; margin-top:8px; }
-      .hero-visual { flex:0 0 360px; display:flex; justify-content:center; }
-      .phone-mock { width:320px; border-radius:18px; overflow:hidden; box-shadow:0 18px 40px rgba(0,0,0,0.18); background:linear-gradient(180deg,#072b1a,#0b3f2a); display:flex; align-items:center; justify-content:center; padding:18px; }
-      .phone-mock img { width:100%; height:auto; display:block; filter: drop-shadow(0 6px 18px rgba(0,0,0,0.35)); }
-
-      /* Features */
-      .features { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin:36px auto; padding:0 20px; }
-      .feature-card { background:var(--card); padding:18px; border-radius:12px; width:300px; box-shadow:0 6px 18px rgba(0,0,0,0.18); text-align:right; color:var(--text); }
-      .feature-card .icon { width:56px; height:56px; margin-bottom:10px; display:flex; align-items:center; justify-content:center; border-radius:10px; background:var(--muted-card); color:var(--accent); font-size:20px; }
-      .feature-card h3 { margin:6px 0; font-size:18px; }
-      .feature-card p { color:rgba(255,255,255,0.9); font-size:14px; }
-
-      /* How it works */
-      .how-cards { display:flex; gap:12px; margin-top:18px; flex-wrap:wrap; }
-      .how-card { flex:1; min-width:220px; background:rgba(255,255,255,0.03); padding:14px; border-radius:10px; box-shadow:0 6px 18px rgba(0,0,0,0.12); color:var(--text); }
-
-      /* Footer */
-      .site-footer { margin-top:48px; padding:18px 20px; border-top:1px solid rgba(255,255,255,0.04); }
-      .footer-inner { display:flex; justify-content:space-between; gap:12px; align-items:center; flex-wrap:wrap; max-width:1100px; margin:0 auto; }
-
-      /* Utility */
-      .muted { color:var(--muted); }
-      .small { font-size:13px; color:var(--muted); }
-
-      /* Responsive */
-      @media (max-width:900px){
-        .hero-inner { flex-direction:column-reverse; text-align:center; }
-        .hero-text h1 { font-size:28px; }
-        .nav { display:none; }
-        .feature-card { width:100%; }
-        .footer-inner { text-align:center; flex-direction:column; gap:8px; }
-      }
-    </style>
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
   </head>
-
   <body>
-    <header class="site-header" role="banner">
-      <div class="container">
-        <div class="logo">
-          <img src="%PUBLIC_URL%/logo192.png" alt="logo" />
-          <div style="display:flex;flex-direction:column;line-height:1;">
-            <strong>المحفظة الرقمية</strong>
-            <span class="small">الهوية الوطنية في هاتفك</span>
-          </div>
-        </div>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
 
-        <nav class="nav" role="navigation" aria-label="القائمة الرئيسية">
-          <a href="#features">الخدمات</a>
-          <a href="#how">كيف تعمل</a>
-          <a href="#contact">تواصل</a>
-        </nav>
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
 
-        <div class="actions" role="group" aria-label="إجراءات">
-          <button class="btn ghost" onclick="location.href='#'">تسجيل</button>
-          <button class="btn primary" onclick="location.href='#'">دخول</button>
-        </div>
-      </div>
-    </header>
-
-    <main>
-      <!-- Hero -->
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="container hero-inner">
-          <div class="hero-text">
-            <h1 id="hero-title">الهوية الوطنية في هاتفك — آمنة، خاصة، ومتاحة دائماً</h1>
-            <p>محفظة رقمية تحفظ بيانات هويتك وتتيح لك التحقق من هويتك بسرعة في الخدمات الحكومية دون الحاجة لاتصال دائم بالإنترنت.</p>
-            <div class="hero-ctas">
-              <button class="btn primary" onclick="document.getElementById('features')?.scrollIntoView({behavior:'smooth'})">ابدأ الآن</button>
-              <button class="btn ghost" onclick="location.href='#how'">تعرف أكثر</button>
-            </div>
-            <div style="margin-top:12px;" class="small muted">متوافقة مع معايير الخصوصية والتشفير. لا تُخزن بياناتك على خوادم خارجية.</div>
-          </div>
-
-          <div class="hero-visual" aria-hidden="true">
-            <div class="phone-mock">
-              <img src="%PUBLIC_URL%/mock-phone.png" alt="عرض المحفظة على الهاتف" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Features -->
-      <section id="features" class="features" aria-label="ميزات التطبيق">
-        <div class="feature-card" role="article">
-          <div class="icon">🔒</div>
-          <h3>تشفير قوي</h3>
-          <p>بياناتك مشفّرة محلياً على جهازك ولا تُرسل إلا بإذنك.</p>
-        </div>
-
-        <div class="feature-card" role="article">
-          <div class="icon">📶</div>
-          <h3>يعمل بدون إنترنت</h3>
-          <p>التحقق المحلي يتيح لك الاستخدام في أي مكان حتى بدون اتصال.</p>
-        </div>
-
-        <div class="feature-card" role="article">
-          <div class="icon">⚡</div>
-          <h3>سريع وسهل</h3>
-          <p>واجهات بسيطة تُمكّنك من مشاركة هويتك أو التحقق منها خلال ثوانٍ.</p>
-        </div>
-      </section>
-
-      <!-- How it works -->
-      <section id="how" style="max-width:1100px;margin:28px auto;padding:0 20px;">
-        <h2 style="font-size:20px;margin-bottom:10px;">كيف تعمل المحفظة</h2>
-        <p class="muted">نظرة سريعة على خطوات الاستخدام: تسجيل الهوية، تخزين مشفّر، مشاركة آمنة عند الطلب.</p>
-        <div class="how-cards">
-          <div class="how-card">
-            <strong>1. سجل هويتك</strong>
-            <p class="small muted" style="margin-top:8px;">أدخل بياناتك أو امسح المستندات المطلوبة مرة واحدة.</p>
-          </div>
-          <div class="how-card">
-            <strong>2. تخزين مشفّر</strong>
-            <p class="small muted" style="margin-top:8px;">تُخزن البيانات مشفّرة على جهازك فقط.</p>
-          </div>
-          <div class="how-card">
-            <strong>3. مشاركة آمنة</strong>
-            <p class="small muted" style="margin-top:8px;">شارك إثبات الهوية عند الحاجة دون كشف بيانات إضافية.</p>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer" role="contentinfo">
-      <div class="footer-inner">
-        <div class="small">© <span id="year"></span> المحفظة الرقمية — جميع الحقوق محفوظة</div>
-        <div style="display:flex;gap:12px;align-items:center;">
-          <a class="small" href="#">سياسة الخصوصية</a>
-          <a class="small" href="#">الشروط</a>
-        </div>
-      </div>
-    </footer>
-
-    <script>
-      // Set current year
-      document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
   </body>
 </html>
